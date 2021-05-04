@@ -54,7 +54,6 @@ function App() {
         birthday={customers[2].birthday}
         gender={customers[2].gender}
         job={customers[2].job}
-        jjj={ddd}
       />
     </div>
   );
