@@ -50,9 +50,22 @@ props 혹은 state가 변경되는 경우에는 위 함수 등이 사용이 되�
 
 class App extends Component {
 // props는 변경될 수 없는 데이터를 정의할때, state는 변결될 수 있는 데이터를 정의할 때 사용
-  state = {
-    customers: "",
-    completed: 0
+  constructor (props) {
+    super(props);
+    this.state = {
+      customers: '',
+      completed: 0
+    }
+  }
+
+  stateRefresh = () => {
+    this.setState({
+      customers: '',
+      completed: 0
+    });
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {
@@ -102,7 +115,7 @@ class App extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
       </div>
     );
   }
